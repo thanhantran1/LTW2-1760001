@@ -38,6 +38,10 @@ module.exports = function(app, passport) {
         user:req.user
      });
     });
+    
+    app.get('/inform', function(req,res){
+        res.render('inform.ejs');
+    });
 
     app.get('/list', function(req, res){
         res.render('list.ejs', function(connection) {
