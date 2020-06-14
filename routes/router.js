@@ -42,6 +42,24 @@ module.exports = function(app, passport) {
     app.get('/inform', function(req,res){
         res.render('inform.ejs');
     });
+    
+    app.get('/conference', function (req, res) {
+
+         res.render('conference.ejs', function(connection) {
+            var mysql = require('mysql');                         
+            connection = mysql.createConnection({
+                host: "localhost",
+                user: "root",
+                passport: "",
+                database: "fitness"
+            });
+            var  sql = "select * from conference";
+            connection.query(sql, function(err, result) {
+            if (err) throw err;
+            res.send({data:result});
+        });
+        })
+    });
 
     app.get('/list', function(req, res){
         res.render('list.ejs', function(connection) {
