@@ -60,6 +60,16 @@ module.exports = function(app, passport) {
         });
         })
     });
+    
+    app.get('/insert', function(req, res){
+        res.render('insert.ejs', {message: req.flash('AddMessage')});
+    });
+
+    app.post('/insert', passport.authenticate('Add', {
+        successRedirect: '/profile',
+        failureRedirect: '/insert',
+        failureFlash: true
+    }));
 
     app.get('/list', function(req, res){
         res.render('list.ejs', function(connection) {
