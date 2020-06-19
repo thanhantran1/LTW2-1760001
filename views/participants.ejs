@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bodybuilding Competition</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        html{
+            padding:50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>Participants</h1>
+            <!-- <a href="/logout" class="btn btn-danger btn-sm">Logout</a> -->
+            <a href="profile"><span class="fa fa-arrow-left" title="Profile"></span></a>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+              <h4>Participants</h4>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">#</th>
+                  <th scope="col">Participants</th>
+                  <th scope="col">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% data.rows.foreach(function(item) { %>
+                  <tr>
+                    <th scope="row" class="text-center"><%= item.id %> </th>
+                    <td><%= item.username %></td>
+                  </tr>
+                <%}%>)
+              </tbody>
+            </table>
+            <div class="card-footer text-muted">
+              Footer
+            </div>
+          </div>
+    </div>
+</body>
+</html>

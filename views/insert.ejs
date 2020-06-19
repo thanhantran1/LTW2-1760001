@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+      html{
+      padding:50px;
+  }
+  </style>
+</head>
+<body>
+    <div class="container">
+
+      <% if(message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div> 
+      <% } %>
+
+        <form action="/insert" method="post">
+          <div class="form-group">
+            <label>Tên Sự Kiện</label>
+            <input type="text" class="form-control" name="tensk">
+          </div>
+
+          <div class="form-group">
+            <label>Nơi Tổ Chức</label>
+            <input type="text" class="form-control" name="noitochuc">
+          </div>
+
+          <div class="form-group">
+            <label>Thời Gian Tổ Chức</label>
+            <input type="date" class="forn-control" name="thoigian">
+          </div>
+
+          <button type="submit" class="btn btn-succcess btn-lg">Add Event</button>
+        </form>
+    </div>
+</body>
+</html>
