@@ -90,3 +90,42 @@ passport.use(
   })
  );
 };
+
+//  -----------------------------------------------------------------------
+
+passport.use(
+  'Add',
+  new LocalStrategy({
+    tenskField : 'tensk',
+    noitochucField: 'noitochuc',
+    thoigianField: 'thoigian',
+    passReqToCallback: true
+  },
+
+  function(req, tensk, noitochuc, thoigian, done){
+   connection.query("SELECT * FROM event WHERE tensk = ? ", 
+   [tensk], function(err, rows){
+    if(err)
+     return done(err);
+    if(rows.length){
+     return done(null, false, req.flash('AddMessage', 'That is already taken'));
+    }else{
+     var newEventMysql = {
+      tensk: tensk,
+      noitochuc: noitochuc,
+      thoigian: bcrypt.hashSync(thoigian, null, null),
+     };
+
+    var insertQuery = "INSERT INTO event (tensk, noitochuc, thoigian) values (?, ?, ?)";
+
+    connection.query(insertQuery, [newEventMysql.tensk, newEventMysql.noitochuc, newEventMysql.thoigian],
+      function(err, rows){
+       newEventMysql.id = rows.insertId;
+
+       return done(null, newEventMysql);
+      });
+    }
+   });
+  })
+ );
+};
